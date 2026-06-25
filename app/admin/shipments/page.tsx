@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Package } from "lucide-react";
+import { Package, Download } from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
 import { AssignAgent } from "@/components/admin/assign-agent";
 import { EmptyState } from "@/components/empty-state";
@@ -56,12 +56,27 @@ export default async function AdminShipmentsPage({
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">Manage Shipments</h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400">
-          {list.length} shipment{list.length === 1 ? "" : "s"} across the
-          platform.
-        </p>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight">Manage Shipments</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            {list.length} shipment{list.length === 1 ? "" : "s"} across the
+            platform.
+          </p>
+        </div>
+        <a
+          href={`/admin/shipments/export${
+            status || searchParams.q
+              ? `?${new URLSearchParams({
+                  ...(status ? { status } : {}),
+                  ...(searchParams.q ? { q: searchParams.q } : {}),
+                }).toString()}`
+              : ""
+          }`}
+          className="btn-secondary"
+        >
+          <Download className="h-4 w-4" /> Export CSV
+        </a>
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
