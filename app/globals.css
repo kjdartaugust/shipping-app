@@ -35,6 +35,9 @@
   .btn-primary {
     @apply btn bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500/50;
   }
+  .btn-accent {
+    @apply btn bg-accent-500 text-slate-900 hover:bg-accent-400 focus:ring-accent-500/60;
+  }
   .btn-secondary {
     @apply btn border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-200 dark:hover:bg-white/[0.08];
   }
@@ -43,6 +46,17 @@
   }
   .badge {
     @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+  /* DHL-style yellow underline accent for section headings */
+  .accent-rule {
+    @apply relative inline-block pb-3;
+  }
+  .accent-rule::after {
+    content: "";
+    @apply absolute bottom-0 left-0 h-1 w-16 rounded-full bg-accent-500;
+  }
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 font-semibold text-brand-600 transition hover:gap-2.5 hover:text-brand-700 dark:text-brand-400;
   }
 }
 
