@@ -14,6 +14,18 @@ A sophisticated full-stack shipping/logistics web app built with **Next.js 14 (A
 - 🌗 **Dark/light mode**, responsive, courier-brand UI.
 - 🌍 **Public tracking** — anyone can track by number, no account required (privacy-masked).
 
+## Roles & the end-to-end flow
+
+Every new signup is a **customer** by default; `agent` and `admin` are elevated roles you grant via SQL (`update profiles set role = '…'`). The three roles see different shells of the same app:
+
+| Role | Sees | Can do |
+| --- | --- | --- |
+| **Customer** (default) | Overview · My Shipments · Book Shipment · Notifications · Profile | Book shipments, track them on the live map, view waybills/invoices. RLS scopes every query to their own rows. |
+| **Agent** | The above **+ My Deliveries** | Advance the status of shipments assigned to them; add location scans. |
+| **Admin** | The above **+ Administration** (All Shipments, Users & Agents, Settings) | Assign shipments to agents, change user roles, export CSV, delete shipments. |
+
+**How they connect:** a **customer** books a shipment → an **admin** assigns it to an **agent** → the **agent** advances its status → a Postgres trigger logs a tracking event *and* notifies the customer, who watches it move in real time. To experience the customer side, just register a fresh account — it starts as a plain customer.
+
 ## Quick start
 
 ```bash
