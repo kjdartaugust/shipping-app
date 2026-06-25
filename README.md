@@ -48,6 +48,8 @@ Agents (role `agent`) appear in the admin assignment dropdown.
 
 After registering at least one account, run [`supabase/seed.sql`](supabase/seed.sql) in the SQL editor to populate four sample shipments (delivered, in-transit, pending, out-for-delivery) with full tracking history and map coordinates — handy for demos and screenshots. It's safe to re-run.
 
+To demo the **agent assignment → delivery queue** flow, register a second account, then run [`supabase/seed-agent.sql`](supabase/seed-agent.sql) (set the email at the top) — it promotes that account to `agent` and assigns the demo shipments to it.
+
 ## Architecture
 
 See [`CLAUDE.md`](CLAUDE.md) for an architecture deep-dive. Highlights:
